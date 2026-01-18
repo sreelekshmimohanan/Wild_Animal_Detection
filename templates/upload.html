@@ -1,0 +1,36 @@
+{% block content %} {% load static %} {% include 'header.html' %}
+
+<!-- contact -->
+<div id="contact" class="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="titlepage">
+          <h2>Upload File</h2>
+          <span> </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form class="main_form" action="video_detection" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-12">
+              <input class="form_contril" placeholder="video" type="file" name="video" required />
+            </div>
+            <div class="col-sm-12">
+              <button class="send_btn">Upload</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end contact -->
+<br /><br />
+
+{% include 'footer.html' %} {% endblock %}

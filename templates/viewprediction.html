@@ -1,0 +1,104 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+
+</head>
+ <!--/ Intro Single star /-->
+ <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Result</h1>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </section>
+  <!--/ Intro Single End /-->
+
+    <!--/ Contact Star /-->
+    <section class="contact">
+        <div class="container">
+          <div class="row">
+           
+            <div class="col-sm-12 section-t8">
+              <div class="row">
+                <div class="col-md-6">
+                    <table class="table" id="tbl_exporttable_to_xls">
+                        <thead>
+                            <tr>
+                                <th>srcadd</th>
+                                <th>dstadd </th>
+                                <th>proto </th>
+                                <th>sport </th>
+                                <th>dport </th>
+                                <th>state </th>
+                                <th>stos </th>
+                                <th>dtos </th>
+                                <th>srcwin </th>
+                                <th>dstwin </th>
+                                <th>sHops </th>
+                                <th>dHops </th>
+                                <th>starttime </th>
+                                <th>lasttime </th>
+                                <th>Result </th>
+                                <th>Download </th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                              {% for i in result %}
+                              <td class="price-pr">{{i.srcadd}}</td> 
+                                <td class="price-pr">{{i.dstadd}}</td>
+                                <td class="price-pr">{{i.proto}}</td>
+                                <td class="price-pr">{{i.sport}}</td>
+                                <td class="price-pr">{{i.dport}}</td>
+                                <td class="price-pr">{{i.state}}</td>
+                                <td class="price-pr">{{i.stos}}</td>
+                                <td class="price-pr">{{i.dtos}}</td>
+                                <td class="price-pr">{{i.srcwin}}</td>
+                                <td class="price-pr">{{i.dstwin}}</td>  
+                                <td class="price-pr">{{i.sHops}}</td>  
+                                <td class="price-pr">{{i.dHops}}</td>  
+                                <td class="price-pr">{{i.starttime}}</td>  
+                                <td class="price-pr">{{i.lasttime}}</td>  
+                                <td class="price-pr">{{i.result}}</td>  
+                                <td class="price-pr"><button class="btn btn-primary"   onclick="ExportToExcel('xlsx')">Download Excel</button></td>  
+                               
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                </div>
+    
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--/ Contact End /-->
+
+      <script>
+
+        function ExportToExcel(type, fn, dl) {
+            var elt = document.getElementById('tbl_exporttable_to_xls');
+            var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+            return dl ?
+                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                XLSX.writeFile(wb, fn || ('Prediction.' + (type || 'xlsx')));
+        }
+
+    </script>
+
+{% include 'footer.html' %}
+
+{% endblock %}
